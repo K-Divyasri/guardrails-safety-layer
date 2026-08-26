@@ -1,0 +1,12 @@
+# Core - needed for the guards to run at all.
+pydantic>=2.0
+
+# Tests.
+pytest>=8.0
+
+# Optional - only for the --llm classifier. Safe to install; harmless if unused.
+litellm>=1.40
+python-dotenv>=1.0
+
+# Optional - only for the web app (streamlit run app.py).
+streamlit>=1.30

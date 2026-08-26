@@ -1,0 +1,33 @@
+# pyproject.toml describes the project. It lets you run the tool as `safeguard`
+# after `pip install -e .`, and it's where pytest reads its settings.
+
+[project]
+name = "safeguard"
+version = "0.1.0"
+description = "A guardrails layer for a chatbot: block prompt injection, redact PII, scope topics, validate output. Runs offline."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+# The optional LLM classifier (--llm) for the fuzzy cases.
+llm = ["litellm>=1.40", "python-dotenv>=1.0"]
+# The Streamlit demo UI.
+web = ["streamlit>=1.30"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+safeguard = "safeguard.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["safeguard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
