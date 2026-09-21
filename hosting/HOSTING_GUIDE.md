@@ -13,7 +13,7 @@ front of a demo bot. "Hosting" here means two separate jobs:
 Do them in that order. A repo with green CI is worth having even if you never deploy
 the app; the reverse isn't true.
 
-Everything below assumes you're working from the repo root (`ai/17-guardrails-safety-layer/`) — the
+Everything below assumes you're working from the repo root (`ai/17-guardrails-safety-layer/`) - the
 folder that contains `app.py`, `safeguard/`, `tests/`, and
 this `hosting/` folder. That whole project folder is what becomes the GitHub repo.
 
@@ -49,7 +49,7 @@ folder it's in, so it is covered by this one root-level rule.
 **`.env` never gets committed.** If it's on GitHub even once, treat the key as
 burned — revoke and re-issue it with the provider, then remove the file from Git
 (the troubleshooting section of the project-1 hosting guide covers exactly this).
-The repo ships `.env.example` instead — variable names, no
+The repo ships `.env.example` instead - variable names, no
 values — and that one is meant to be committed.
 
 ### 1b. Init, commit, push
@@ -103,7 +103,7 @@ every pull request:
 
 That second line is the one worth understanding properly. `python -m safeguard
 --redteam` runs the same 19 attacks documented in
-`REDTEAM_REPORT.md` — 5 injection attempts, 4 PII leaks, 4
+`REDTEAM_REPORT.md` - 5 injection attempts, 4 PII leaks, 4
 off-topic questions, 2 unsafe requests, and 4 normal banking questions that should
 be *allowed* — straight through the guards, and prints the same pass/fail table you
 see in that file. Critically, **the CLI itself exits with code 1 if even one attack
@@ -134,7 +134,7 @@ git commit -m "Add CI: tests + red-team suite as a ship gate"
 git push
 ```
 
-Open the file once and read the comments — it's annotated step by step.
+Open the file once and read the comments - it's annotated step by step.
 
 Go to the repo's **Actions** tab on GitHub and watch the run. You'll see two green
 checks appear: "Run tests" and "Run the red-team suite (ship gate)". To *see* the
@@ -157,11 +157,11 @@ Streamlit apps for free. Reference docs: the
 
 A Space is its own small Git repo. At its root it needs:
 
-- `app.py` — copy this straight from `app.py`.
+- `app.py` - copy this straight from `app.py`.
 - `requirements.txt` — use `hosting/space/requirements.txt` from this project, not
   the root `requirements.txt` (the Space one drops `pytest`, which the
   demo doesn't need, and keeps only what the app actually imports).
-- The `safeguard/` package folder — copy `safeguard/` across
+- The `safeguard/` package folder - copy `safeguard/` across
   wholesale (the code the app imports; skip the `__pycache__/` subfolders inside it).
 - `README.md` with YAML front-matter at the very top telling Spaces how to run it.
   Use `hosting/space/README.md` from this project as-is — it already has:
@@ -258,10 +258,10 @@ https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app
 1. Go to https://share.streamlit.io, sign in with GitHub, and authorize access to
    your `guardrails-safety-layer` repo.
 2. Click **New app**, pick that repo and the `main` branch.
-3. Set **Main file path** to `app.py` — this is the one field
+3. Set **Main file path** to `app.py` - this is the one field
    that matters; your `app.py` sits at the repo root.
 4. Deploy. Community Cloud looks for a `requirements.txt` next to the app file it's
-   running, so it picks up `requirements.txt` automatically —
+   running, so it picks up `requirements.txt` automatically -
    no extra config needed there.
 5. For the optional key: open the deployed app's **Settings → Secrets** and paste in
 

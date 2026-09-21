@@ -20,7 +20,7 @@ especially, "should block that" isn't the same as "blocks that."
 
 ## Tests pass
 
-- [ ] `pytest` from the repo root is all green — 33 tests.
+- [ ] `pytest` from the repo root is all green - 33 tests.
 - [ ] Run it in the fresh venv from the step above, not your everyday one, so you
       know `requirements.txt` is actually complete.
 
