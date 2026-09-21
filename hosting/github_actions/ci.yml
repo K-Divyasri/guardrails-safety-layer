@@ -14,7 +14,7 @@
 #
 # WHERE THIS FILE GOES: copy it to ".github/workflows/ci.yml" at the ROOT of your
 # repo (the repo root is this project folder, ai/17-guardrails-safety-layer/, the
-# one that contains build_from_scratch/, knowledge/, notebooks/, labs/, hosting/).
+# one that contains safeguard/, tests/, app.py, hosting/).
 # GitHub only runs workflow files that live under .github/workflows/.
 
 # The name shown in the repo's "Actions" tab.
@@ -47,20 +47,17 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      # Step 3: install the project's dependencies. The path is relative to the
-      # repo root, because build_from_scratch/ is a subfolder of this repo (not
-      # the repo root itself) — that's why the "build_from_scratch/" prefix is
-      # here instead of a bare "requirements.txt".
+      # Step 3: install the project's dependencies. requirements.txt is at the
+      # repo root, so a bare filename is enough.
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r build_from_scratch/requirements.txt
+          pip install -r requirements.txt
 
-      # Step 4: run the 33 offline pytest tests. "working-directory" changes into
-      # build_from_scratch/ first, because that's where pyproject.toml lives and
-      # where pytest expects to find the tests/ folder and the safeguard package.
+      # Step 4: run the 33 offline pytest tests from the repo root, which is where
+      # pyproject.toml lives and where pytest expects to find the tests/ folder and
+      # the safeguard package.
       - name: Run tests
-        working-directory: build_from_scratch
         run: pytest
 
       # Step 5: run the red-team suite — the 19 documented attacks in redteam.py —
@@ -69,5 +66,4 @@ jobs:
       # handled as expected. No key needed: this runs entirely on the offline
       # regex/rule guards, same as the committed report.
       - name: Run the red-team suite (ship gate)
-        working-directory: build_from_scratch
         run: python -m safeguard --redteam

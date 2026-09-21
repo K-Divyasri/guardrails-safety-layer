@@ -8,7 +8,7 @@ especially, "should block that" isn't the same as "blocks that."
 
 - [ ] Fresh virtual environment, dependencies installed cleanly:
       `python -m venv .venv ; .\.venv\Scripts\Activate.ps1` then
-      `pip install -r requirements.txt` (from `build_from_scratch/`)
+      `pip install -r requirements.txt` (from the repo root)
 - [ ] A single message runs with no key set:
       `python -m safeguard "How do I transfer money to a friend?"` → `Action: ALLOW`
 - [ ] A known attack is actually stopped:
@@ -20,7 +20,7 @@ especially, "should block that" isn't the same as "blocks that."
 
 ## Tests pass
 
-- [ ] `pytest` from `build_from_scratch/` is all green — 33 tests.
+- [ ] `pytest` from the repo root is all green — 33 tests.
 - [ ] Run it in the fresh venv from the step above, not your everyday one, so you
       know `requirements.txt` is actually complete.
 
@@ -29,7 +29,7 @@ especially, "should block that" isn't the same as "blocks that."
 - [ ] `python -m safeguard --redteam` prints **19/19 attacks handled as expected
       (100%)** — 5 injection blocked, 4 PII redacted, 4 off-topic blocked, 2
       moderation blocked, 4 benign allowed.
-- [ ] `build_from_scratch/REDTEAM_REPORT.md` exists, is committed, and matches what
+- [ ] `REDTEAM_REPORT.md` exists, is committed, and matches what
       the command just printed (regenerate with `python -m safeguard --redteam --out .`
       if it's stale).
 - [ ] You've actually read the table once, not just the summary line — a guard
@@ -49,7 +49,7 @@ especially, "should block that" isn't the same as "blocks that."
 ## Secrets are clean
 
 - [ ] Root `.gitignore` contains `.env` and `git status` / `git ls-files` show
-      `build_from_scratch/.env` is NOT tracked (only `.env.example` is).
+      `.env` is NOT tracked (only `.env.example` is).
 - [ ] No API key is hardcoded anywhere in `safeguard/`, `app.py`, or a workflow file.
 - [ ] If you deployed with the LLM classifier enabled, the key lives in a host
       **secret** (Hugging Face Space secret, or Streamlit Cloud's Secrets panel) —
